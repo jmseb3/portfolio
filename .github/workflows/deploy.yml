@@ -12,12 +12,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2.3.1
 
-      - name: Enable KVM group perms
-        run: |
-          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
-          sudo udevadm control --reload-rules
-          sudo udevadm trigger --name-match=kvm
-
       - uses: actions/cache@v2
         with:
           path: |
@@ -29,17 +23,6 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
-
-#      - name: Test
-#        run: |
-#          ./gradlew check
-#
-#      - name: Upload Reports
-#        uses: actions/upload-artifact@v2
-#        with:
-#          name: Test-Reports
-#          path: build/reports
-#        if: always()
 
       - name: Build
         run: |
