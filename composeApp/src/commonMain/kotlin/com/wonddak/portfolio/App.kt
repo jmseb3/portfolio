@@ -28,7 +28,7 @@ internal fun App() = AppTheme {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = stringResource(Res.string.cyclone),
+            text = "안녕하세요.",
             fontFamily = FontFamily(Font(Res.font.IndieFlower_Regular)),
             style = MaterialTheme.typography.displayLarge
         )
