@@ -33,6 +33,7 @@ import androidx.compose.runtime.setValue
 import androidx.navigation.NavType
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.navArgument
+import com.wonddak.portfolio.ui.projectList
 
 @OptIn(ExperimentalComposeUiApi::class, ExperimentalMaterial3Api::class)
 @Composable
@@ -90,12 +91,11 @@ internal fun App(
                 }
             }
             composable(
-                route = "${Screen.PROJECT.name}/{projectId}",
-                arguments = listOf(navArgument("projectId") { type = NavType.IntType })
+                route = "${Screen.PROJECT.name}/$PROJECT_ID",
+                arguments = listOf(navArgument(PROJECT_ID) { type = NavType.IntType })
             ) { backStackEntry ->
-                Column {
-                    Text("${backStackEntry.arguments?.getInt("projectId")}")
-                }
+                val projectId :Int = backStackEntry.arguments?.getInt(PROJECT_ID) ?:0
+                projectList.find { it.id == projectId }?.makeContentView()
             }
         }
     }
@@ -104,6 +104,7 @@ internal fun App(
 
 internal expect fun openUrl(url: String?)
 
+internal const val PROJECT_ID = "projectId"
 enum class Screen() {
     HOME,
     PROJECT

@@ -3,6 +3,7 @@ package com.wonddak.portfolio.theme
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Typography
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.*
@@ -72,6 +73,7 @@ private val DarkColorScheme = darkColorScheme(
 )
 
 internal val LocalThemeIsDark = compositionLocalOf { mutableStateOf(true) }
+
 
 @Composable
 internal fun AppTheme(
