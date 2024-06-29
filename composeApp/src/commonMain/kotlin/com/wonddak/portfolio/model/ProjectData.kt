@@ -12,7 +12,7 @@ import portfolio.composeapp.generated.resources.Res
 
 data class ProjectData(
     var id : Int,
-    var type : ProjectType,
+    var type : ProjectType? = null,
     var title :String = "",
     var icon : DrawableResource? = null,
     var images : List<DrawableResource> = emptyList(),
@@ -23,7 +23,7 @@ data class ProjectData(
         Column {
             Text(id.toString())
             Text(title)
-            Text(type.name)
+            Text(type?.name ?: "null")
         }
     }
 

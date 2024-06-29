@@ -91,10 +91,13 @@ internal fun App(
                 }
             }
             composable(
-                route = "${Screen.PROJECT.name}/$PROJECT_ID",
-                arguments = listOf(navArgument(PROJECT_ID) { type = NavType.IntType })
+                route = "${Screen.PROJECT.name}/{id}",
+                arguments = listOf(navArgument("id") {
+                    type = NavType.IntType
+                    defaultValue = 0
+                })
             ) { backStackEntry ->
-                val projectId :Int = backStackEntry.arguments?.getInt(PROJECT_ID) ?:0
+                val projectId: Int = backStackEntry.arguments?.getInt("id") ?: 0
                 projectList.find { it.id == projectId }?.makeContentView()
             }
         }
@@ -104,7 +107,7 @@ internal fun App(
 
 internal expect fun openUrl(url: String?)
 
-internal const val PROJECT_ID = "projectId"
+
 enum class Screen() {
     HOME,
     PROJECT

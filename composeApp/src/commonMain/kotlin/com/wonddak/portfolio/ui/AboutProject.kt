@@ -62,6 +62,11 @@ fun AboutProject(
 
 val projectList = setOf(
     ProjectData(
+        0,
+        null,
+        "잘못된 잡근데스"
+    ),
+    ProjectData(
         1,
         ProjectType.App,
         "시원한 수학박사"
