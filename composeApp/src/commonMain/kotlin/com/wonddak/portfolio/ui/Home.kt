@@ -14,11 +14,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.wonddak.portfolio.Mode
+import com.wonddak.portfolio.SelectModel
 
 @Composable
 fun HomeView(
     mode: Mode,
-    navigateProject: (id:Int) -> Unit,
+    selectModel: SelectModel,
+    navigateProject: (id: Int) -> Unit,
 ) {
     Column(
         modifier = Modifier
@@ -28,14 +30,19 @@ fun HomeView(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         if (mode == Mode.Mobile) {
-            AboutMe(Modifier.fillMaxWidth(), mode)
-            AboutProject(Modifier.fillMaxWidth(), mode)
+            AboutMe(mode, Modifier.fillMaxWidth())
+            AboutProject(mode, selectModel, Modifier.fillMaxWidth(), navigateProject)
         } else {
             Row(
                 Modifier.fillMaxSize()
             ) {
-                AboutMe(Modifier.fillMaxWidth(0.3f).fillMaxHeight(), mode)
-                AboutProject(Modifier.fillMaxWidth(0.7f).fillMaxHeight(), mode)
+                AboutMe(mode, Modifier.fillMaxWidth(0.3f).fillMaxHeight())
+                AboutProject(
+                    mode,
+                    selectModel,
+                    Modifier.fillMaxWidth(0.7f).fillMaxHeight(),
+                    navigateProject
+                )
             }
         }
     }

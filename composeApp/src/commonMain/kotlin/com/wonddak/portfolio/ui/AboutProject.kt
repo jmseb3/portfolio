@@ -2,6 +2,7 @@ package com.wonddak.portfolio.ui
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
@@ -12,6 +13,7 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -21,17 +23,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.wonddak.portfolio.Mode
+import com.wonddak.portfolio.SelectModel
 import com.wonddak.portfolio.model.ProjectData
 import com.wonddak.portfolio.model.ProjectType
 
 @Composable
 fun AboutProject(
-    modifier: Modifier,
     mode: Mode,
+    selectModel: SelectModel,
+    modifier: Modifier,
+    navigateProject: (id: Int) -> Unit,
 ) {
-    var nowType by remember {
-        mutableStateOf(ProjectType.App)
-    }
+    val nowType = selectModel.nowType
     Column(
         modifier,
         horizontalAlignment = Alignment.CenterHorizontally
@@ -39,11 +42,16 @@ fun AboutProject(
         Text(
             mode.name
         )
-        Row {
+        Row(
+            modifier = Modifier.fillMaxWidth()
+        ) {
             ProjectType.entries.forEach {
-                Button(onClick = {
-                    nowType = it
-                }) {
+                Button(
+                    onClick = {
+                        selectModel.updateNowType(it)
+                    },
+                    modifier = Modifier.weight(1f)
+                ) {
                     Text(it.name)
                 }
             }
@@ -53,7 +61,13 @@ fun AboutProject(
             columns = GridCells.Adaptive(minSize = 128.dp)
         ) {
             items(projectList.filter { it.type == nowType }) { item ->
-                Text(item.title)
+                TextButton(
+                    onClick = {
+                        navigateProject(item.id)
+                    },
+                ) {
+                    Text(item.title)
+                }
             }
         }
     }

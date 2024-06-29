@@ -24,8 +24,8 @@ import com.wonddak.portfolio.openUrl
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.Font
 import org.jetbrains.compose.resources.painterResource
+import portfolio.composeapp.generated.resources.MangoDdobak_R
 import portfolio.composeapp.generated.resources.Res
-import portfolio.composeapp.generated.resources.vitro_core
 
 
 data class IconData(
@@ -36,14 +36,14 @@ data class IconData(
     @Composable
     fun makeView(modifier: Modifier) {
         IconButton(
-            modifier = modifier.padding(horizontal = 4.dp, vertical = 4.dp).widthIn(min = 68.dp),
+            modifier = modifier.padding(horizontal = 4.dp, vertical = 4.dp),
             onClick = { openUrl(openUrl) },
         ) {
             Icon(
                 painter = painterResource(res),
                 contentDescription = null,
                 tint = tintColor ?: LocalContentColor.current,
-                modifier = Modifier.size(60.dp)
+                modifier = Modifier
             )
         }
     }
@@ -67,7 +67,7 @@ data class ProfileData(
             Text(
                 "안녕하세요\n성장하는 개발자 원딱 입니다.",
                 fontFamily = FontFamily(
-                    Font(Res.font.vitro_core)
+                    Font(Res.font.MangoDdobak_R)
                 ),
                 modifier = Modifier,
                 textAlign = TextAlign.Center

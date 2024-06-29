@@ -7,7 +7,8 @@ data class ProjectData(
     var type : ProjectType,
     var title :String = "",
     var icon : DrawableResource? = null,
-    var images : List<DrawableResource> = emptyList()
+    var images : List<DrawableResource> = emptyList(),
+    var contentDescription :String = ""
 )
 
 enum class ProjectType {

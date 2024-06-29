@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.wonddak.portfolio.Mode
+import com.wonddak.portfolio.SelectModel
 import com.wonddak.portfolio.model.IconData
 import com.wonddak.portfolio.model.ProfileData
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -25,8 +26,8 @@ import portfolio.composeapp.generated.resources.appstore
 
 @Composable
 fun AboutMe(
-    modifier: Modifier,
     mode: Mode,
+    modifier: Modifier,
 ) {
     val profile = ProfileData(
         Res.drawable.profile
@@ -64,26 +65,19 @@ fun AboutMe(
             }
         }
     } else {
-        Row(
+        Column(
             modifier = modifier,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
+            horizontalAlignment = Alignment.CenterHorizontally
+        ){
             profile.makeView(Modifier.defaultMinSize(minWidth = 150.dp))
             Row(
                 horizontalArrangement = Arrangement.spacedBy(10.dp),
                 modifier = Modifier
-                    .horizontalScroll(rememberScrollState())
             ) {
                 iconData.forEach { icon ->
-                    icon.makeView(Modifier)
+                    icon.makeView(Modifier.weight(1f))
                 }
             }
         }
     }
-}
-
-@Preview
-@Composable
-fun AboutMePreview(){
-    AboutMe(Modifier, Mode.Desktop)
 }
