@@ -21,6 +21,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.wonddak.portfolio.openUrl
+import com.wonddak.portfolio.theme.getFont
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.Font
 import org.jetbrains.compose.resources.painterResource
@@ -66,9 +67,7 @@ data class ProfileData(
             )
             Text(
                 "안녕하세요\n성장하는 개발자 원딱 입니다.",
-                fontFamily = FontFamily(
-                    Font(Res.font.vitro_core)
-                ),
+                fontFamily = getFont(),
                 modifier = Modifier,
                 textAlign = TextAlign.Center
             )
