@@ -2,6 +2,7 @@ package com.wonddak.portfolio.data
 
 import androidx.compose.ui.graphics.Color
 import com.wonddak.portfolio.model.IconData
+import com.wonddak.portfolio.model.LinkData
 import com.wonddak.portfolio.model.ProfileData
 import com.wonddak.portfolio.model.ProjectData
 import com.wonddak.portfolio.model.ProjectType
@@ -14,17 +15,38 @@ import portfolio.composeapp.generated.resources.velog
 
 val projectList = setOf(
     ProjectData(
-        1,
-        ProjectType.App,
-        "시원한 수학박사"
+        id = 1,
+        type = ProjectType.App,
+        title = "시원한 수학박사",
+        links = listOf(
+            LinkData(type = LinkData.LinkType.PlayStore,"")
+        )
     ),
     ProjectData(
-        2,
+        id = 2,
+        type = ProjectType.App,
+        title = "MT 매니저",
+        links = listOf(
+            LinkData(type = LinkData.LinkType.PlayStore,""),
+            LinkData(type = LinkData.LinkType.AppStore,""),
+        )
+    ),
+    ProjectData(
+        id = 3,
+        type = ProjectType.App,
+        title = "LoaCell",
+        links = listOf(
+            LinkData(type = LinkData.LinkType.PlayStore,""),
+            LinkData(type = LinkData.LinkType.AppStore,""),
+        )
+    ),
+    ProjectData(
+        4,
         ProjectType.Library,
         "SImp jwt parser"
     ),
     ProjectData(
-        3,
+        5,
         ProjectType.Plugin,
         "Font Helper"
     )
