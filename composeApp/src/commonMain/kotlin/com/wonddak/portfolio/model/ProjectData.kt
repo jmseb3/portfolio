@@ -9,7 +9,6 @@ import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.Font
 import portfolio.composeapp.generated.resources.MangoDdobak_R
 import portfolio.composeapp.generated.resources.Res
-import portfolio.composeapp.generated.resources.Res
 import portfolio.composeapp.generated.resources.appstore
 import portfolio.composeapp.generated.resources.googleplay
 import portfolio.composeapp.generated.resources.link

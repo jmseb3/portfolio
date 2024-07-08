@@ -10,25 +10,16 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.wonddak.portfolio.Mode
 import com.wonddak.portfolio.data.iconData
 import com.wonddak.portfolio.data.profile
-import com.wonddak.portfolio.model.IconData
-import com.wonddak.portfolio.model.ProfileData
 import org.jetbrains.compose.ui.tooling.preview.Preview
-import portfolio.composeapp.generated.resources.Res
-import portfolio.composeapp.generated.resources.github
-import portfolio.composeapp.generated.resources.profile
-import portfolio.composeapp.generated.resources.velog
-import portfolio.composeapp.generated.resources.googleplay
-import portfolio.composeapp.generated.resources.appstore
 
 @Composable
 fun AboutMe(
-    modifier: Modifier,
     mode: Mode,
+    modifier: Modifier
 ) {
 
     if (mode == Mode.Desktop) {
@@ -62,6 +53,6 @@ fun AboutMe(
 
 @Preview
 @Composable
-fun AboutMePreview(){
-    AboutMe(Modifier, Mode.Desktop)
+fun AboutMePreview() {
+    AboutMe(Mode.Desktop, Modifier)
 }
