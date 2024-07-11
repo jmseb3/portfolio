@@ -54,10 +54,11 @@ fun AboutProject(
             columns = GridCells.Adaptive(minSize = 128.dp)
         ) {
             items(projectList.filter { it.type == nowType }) { item ->
-                TextButton(onClick = {
-                    println(item.id)
-                    navigateProject(item.id)
-                }) {
+                TextButton(
+                    onClick = {
+                        navigateProject(item.id)
+                    }
+                ) {
                     Text(item.title, fontFamily = getFont())
                 }
             }

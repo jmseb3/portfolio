@@ -31,6 +31,7 @@ import androidx.navigation.navArgument
 import com.wonddak.portfolio.data.projectList
 import com.wonddak.portfolio.theme.AppTheme
 import com.wonddak.portfolio.ui.HomeView
+import com.wonddak.portfolio.ui.ProjectView
 
 @OptIn(ExperimentalComposeUiApi::class, ExperimentalMaterial3Api::class)
 @Composable
@@ -58,20 +59,21 @@ internal fun App(
     }
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = {},
-                navigationIcon = {
-                    IconButton(
-                        onClick = {
-                            navController.popBackStack()
-                        },
-                        enabled = navBackStackEntry?.destination?.route != Screen.HOME.name
-                    ) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, null)
+            if(navBackStackEntry?.destination?.route != Screen.HOME.name) {
+                TopAppBar(
+                    title = {},
+                    navigationIcon = {
+                        IconButton(
+                            onClick = {
+                                navController.popBackStack()
+                            },
+                            enabled = navBackStackEntry?.destination?.route != Screen.HOME.name
+                        ) {
+                            Icon(Icons.AutoMirrored.Filled.ArrowBack, null)
+                        }
                     }
-                }
-            )
-
+                )
+            }
         }
     ) { innerPadding ->
         NavHost(
@@ -94,8 +96,8 @@ internal fun App(
                     defaultValue = 0
                 })
             ) { backStackEntry ->
-                val projectId :Int = backStackEntry.arguments?.getInt(PROJECT_ID) ?:0
-                projectList.find { it.id == projectId }?.makeContentView()
+                val projectId: Int = backStackEntry.arguments?.getInt(PROJECT_ID) ?: 0
+                ProjectView(projectList.find { it.id == projectId })
             }
         }
     }

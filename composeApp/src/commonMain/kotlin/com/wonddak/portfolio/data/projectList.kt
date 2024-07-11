@@ -19,7 +19,10 @@ val projectList = setOf(
         type = ProjectType.App,
         title = "시원한 수학박사",
         links = listOf(
-            LinkData(type = LinkData.LinkType.PlayStore,"")
+            LinkData(
+                type = LinkData.LinkType.PlayStore,
+                "https://play.google.com/store/apps/details?id=com.math.watermelon"
+            )
         )
     ),
     ProjectData(
@@ -27,8 +30,8 @@ val projectList = setOf(
         type = ProjectType.App,
         title = "MT 매니저",
         links = listOf(
-            LinkData(type = LinkData.LinkType.PlayStore,""),
-            LinkData(type = LinkData.LinkType.AppStore,""),
+            LinkData(type = LinkData.LinkType.PlayStore, ""),
+            LinkData(type = LinkData.LinkType.AppStore, ""),
         )
     ),
     ProjectData(
@@ -36,8 +39,8 @@ val projectList = setOf(
         type = ProjectType.App,
         title = "LoaCell",
         links = listOf(
-            LinkData(type = LinkData.LinkType.PlayStore,""),
-            LinkData(type = LinkData.LinkType.AppStore,""),
+            LinkData(type = LinkData.LinkType.PlayStore, ""),
+            LinkData(type = LinkData.LinkType.AppStore, ""),
         )
     ),
     ProjectData(
