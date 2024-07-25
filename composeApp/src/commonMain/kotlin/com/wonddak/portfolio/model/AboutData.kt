@@ -30,6 +30,16 @@ data class IconData(
     val openUrl: String,
     val tintColor: Color? = null,
 ) {
+    constructor(
+        data: LinkData,
+    ) : this(data.type.drawableResource, data.url, data.type.color)
+
+    constructor(
+        type: LinkType,
+        url: String,
+        tintColor: Color? = null,
+    ) : this(type.drawableResource, url, tintColor ?: type.color)
+
     @Composable
     fun makeView(modifier: Modifier) {
         IconButton(

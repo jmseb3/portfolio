@@ -1,8 +1,10 @@
 package com.wonddak.portfolio.data
 
+import androidx.compose.material3.Icon
 import androidx.compose.ui.graphics.Color
 import com.wonddak.portfolio.model.IconData
 import com.wonddak.portfolio.model.LinkData
+import com.wonddak.portfolio.model.LinkType
 import com.wonddak.portfolio.model.ProfileData
 import com.wonddak.portfolio.model.ProjectData
 import com.wonddak.portfolio.model.ProjectType
@@ -12,6 +14,7 @@ import portfolio.composeapp.generated.resources.github
 import portfolio.composeapp.generated.resources.googleplay
 import portfolio.composeapp.generated.resources.profile
 import portfolio.composeapp.generated.resources.velog
+import portfolio.composeapp.generated.resources.icon_app_mt
 
 val projectList = setOf(
     ProjectData(
@@ -19,10 +22,7 @@ val projectList = setOf(
         type = ProjectType.App,
         title = "시원한 수학박사",
         links = listOf(
-            LinkData(
-                type = LinkData.LinkType.PlayStore,
-                "https://play.google.com/store/apps/details?id=com.math.watermelon"
-            )
+            LinkData.PlayStore("com.math.watermelon")
         )
     ),
     ProjectData(
@@ -30,17 +30,24 @@ val projectList = setOf(
         type = ProjectType.App,
         title = "MT 매니저",
         links = listOf(
-            LinkData(type = LinkData.LinkType.PlayStore, ""),
-            LinkData(type = LinkData.LinkType.AppStore, ""),
-        )
+            LinkData.PlayStore("com.wonddak.mtmanger"),
+            LinkData.AppStore("6526487049")
+        ),
+        icon = Res.drawable.icon_app_mt,
+        images = listOf(
+
+        ),
+        contentDescription = """
+            MT 관리를 위한 앱입니다.
+        """.trimIndent()
     ),
     ProjectData(
         id = 3,
         type = ProjectType.App,
         title = "LoaCell",
         links = listOf(
-            LinkData(type = LinkData.LinkType.PlayStore, ""),
-            LinkData(type = LinkData.LinkType.AppStore, ""),
+            LinkData.PlayStore("com.wonddak.mtmanger"),
+            LinkData.AppStore("6526487049")
         )
     ),
     ProjectData(
@@ -61,23 +68,17 @@ val profile = ProfileData(
 
 val iconData = listOf(
     IconData(
-        Res.drawable.github,
-        "https://github.com/jmseb3",
-        Color(0xff181717)
+        LinkData.GitHub("jmseb3")
     ),
     IconData(
-        Res.drawable.velog,
-        "https://velog.io/@jmseb3/posts",
-        Color(0xff20C997)
+        LinkData.Velog("jmseb3")
     ),
     IconData(
-        Res.drawable.googleplay,
+        LinkType.PlayStore,
         "https://play.google.com/store/apps/developer?id=WonDDak",
-        Color(0xff78C257)
     ),
     IconData(
-        Res.drawable.appstore,
+        LinkType.AppStore,
         "https://apps.apple.com/kr/developer/jung-wonhee/id1723807756",
-        Color(0xff0D96F6)
     )
 )
