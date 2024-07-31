@@ -12,6 +12,7 @@ import portfolio.composeapp.generated.resources.Res
 import portfolio.composeapp.generated.resources.appstore
 import portfolio.composeapp.generated.resources.github
 import portfolio.composeapp.generated.resources.googleplay
+import portfolio.composeapp.generated.resources.iamges_app_mt
 import portfolio.composeapp.generated.resources.profile
 import portfolio.composeapp.generated.resources.velog
 import portfolio.composeapp.generated.resources.icon_app_mt
@@ -35,10 +36,11 @@ val projectList = setOf(
         ),
         icon = Res.drawable.icon_app_mt,
         images = listOf(
-
+            Res.drawable.iamges_app_mt
         ),
         contentDescription = """
             MT 관리를 위한 앱입니다.
+            Compose Multi Platform을 이용하여 Android/IOS에서 사용 가능 하도록 되어 있습니다.
         """.trimIndent()
     ),
     ProjectData(
@@ -46,8 +48,8 @@ val projectList = setOf(
         type = ProjectType.App,
         title = "LoaCell",
         links = listOf(
-            LinkData.PlayStore("com.wonddak.mtmanger"),
-            LinkData.AppStore("6526487049")
+            LinkData.PlayStore("com.wonddak.loacell"),
+            LinkData.AppStore("")
         )
     ),
     ProjectData(
@@ -57,6 +59,16 @@ val projectList = setOf(
     ),
     ProjectData(
         5,
+        ProjectType.Library,
+        "HelLogin"
+    ),
+    ProjectData(
+        6,
+        ProjectType.Library,
+        "Compose Switch"
+    ),
+    ProjectData(
+        7,
         ProjectType.Plugin,
         "Font Helper"
     )

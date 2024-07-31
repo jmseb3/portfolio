@@ -14,15 +14,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.wonddak.portfolio.openUrl
 import org.jetbrains.compose.resources.DrawableResource
-import org.jetbrains.compose.resources.Font
 import org.jetbrains.compose.resources.painterResource
-import portfolio.composeapp.generated.resources.MangoDdobak_R
-import portfolio.composeapp.generated.resources.Res
 
 
 data class IconData(
@@ -73,9 +69,6 @@ data class ProfileData(
             )
             Text(
                 "안녕하세요\n성장하는 개발자 원딱 입니다.",
-                fontFamily = FontFamily(
-                    Font(Res.font.MangoDdobak_R)
-                ),
                 modifier = Modifier,
                 textAlign = TextAlign.Center
             )

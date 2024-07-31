@@ -59,10 +59,16 @@ data class ProjectData(
                         Icon(
                             painter = painterResource(item.type.drawableResource),
                             contentDescription = null,
-                            tint = LocalContentColor.current,
+                            tint = item.type.color,
                             modifier = Modifier
                         )
                     }
+                }
+            }
+            Text(contentDescription)
+            LazyRow {
+                items(images) { item ->
+                    Image(painterResource(item), contentDescription = null)
                 }
             }
         }

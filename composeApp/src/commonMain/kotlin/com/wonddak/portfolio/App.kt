@@ -9,10 +9,12 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -21,6 +23,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalWindowInfo
+import androidx.compose.ui.text.TextStyle
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -30,6 +33,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.wonddak.portfolio.data.projectList
 import com.wonddak.portfolio.theme.AppTheme
+import com.wonddak.portfolio.theme.getFont
 import com.wonddak.portfolio.ui.HomeView
 import com.wonddak.portfolio.ui.ProjectView
 
@@ -59,7 +63,7 @@ internal fun App(
     }
     Scaffold(
         topBar = {
-            if(navBackStackEntry?.destination?.route != Screen.HOME.name) {
+            if (navBackStackEntry?.destination?.route != Screen.HOME.name) {
                 TopAppBar(
                     title = {},
                     navigationIcon = {
@@ -101,12 +105,12 @@ internal fun App(
             }
         }
     }
-
 }
 
 internal expect fun openUrl(url: String?)
 
 internal const val PROJECT_ID = "projectId"
+
 enum class Screen() {
     HOME,
     PROJECT

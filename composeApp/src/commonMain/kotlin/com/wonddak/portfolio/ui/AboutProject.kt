@@ -18,7 +18,6 @@ import com.wonddak.portfolio.Mode
 import com.wonddak.portfolio.SelectModel
 import com.wonddak.portfolio.data.projectList
 import com.wonddak.portfolio.model.ProjectType
-import com.wonddak.portfolio.theme.getFont
 
 @Composable
 fun AboutProject(
@@ -59,7 +58,7 @@ fun AboutProject(
                         navigateProject(item.id)
                     }
                 ) {
-                    Text(item.title, fontFamily = getFont())
+                    Text(item.title)
                 }
             }
         }
