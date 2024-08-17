@@ -73,9 +73,10 @@ data class ProjectData(
                     verticalArrangement = Arrangement.spacedBy(10.dp)
                 ) {
                     Text(
-                        text = "$title(${type.name})"
+                        text = "$title [${type.name}]"
                     )
                     HorizontalDivider()
+                    Text("Link")
                     LazyRow {
                         items(links) { item ->
                             IconButton(
@@ -154,6 +155,9 @@ sealed class LinkData(
 
     data class GitHub(val userId: String) :
         LinkData(LinkType.GitHub, "https://github.com/$userId")
+
+    data class GitHubRepo(val repoPath: String) :
+        LinkData(LinkType.GitHub, "https://github.com/jmseb3/$repoPath")
 
     data class Velog(val userId: String) :
         LinkData(LinkType.Velog, "https://velog.io/@$userId/posts")
