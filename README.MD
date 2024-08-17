@@ -1,6 +1,2 @@
-# Compose Multiplatform Application
-
-### Wasm Browser (Alpha)
-Run the browser application: `./gradlew :composeApp:wasmJsBrowserDevelopmentRun --continue`
-Run browser UI tests: `./gradlew :composeApp:wasmJsBrowserTest`
-
+포트폴리오 입니다.
+>> https://jmseb3.github.io/portfolio/
