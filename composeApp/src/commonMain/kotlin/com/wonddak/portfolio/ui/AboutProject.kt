@@ -9,13 +9,14 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.wonddak.portfolio.Mode
 import com.wonddak.portfolio.SelectModel
-import com.wonddak.portfolio.model.ProjectData
+import com.wonddak.portfolio.data.projectList
 import com.wonddak.portfolio.model.ProjectType
 
 @Composable
@@ -52,33 +53,14 @@ fun AboutProject(
             columns = GridCells.Adaptive(minSize = 128.dp)
         ) {
             items(projectList.filter { it.type == nowType }) { item ->
-                item.makePreview {
-                    navigateProject(item.id)
+                TextButton(
+                    onClick = {
+                        navigateProject(item.id)
+                    }
+                ) {
+                    Text(item.title)
                 }
             }
         }
     }
 }
-
-val projectList = setOf(
-    ProjectData(
-        0,
-        null,
-        "잘못된 잡근데스"
-    ),
-    ProjectData(
-        1,
-        ProjectType.App,
-        "시원한 수학박사"
-    ),
-    ProjectData(
-        2,
-        ProjectType.Library,
-        "SImp jwt parser"
-    ),
-    ProjectData(
-        3,
-        ProjectType.Plugin,
-        "Font Helper"
-    )
-)

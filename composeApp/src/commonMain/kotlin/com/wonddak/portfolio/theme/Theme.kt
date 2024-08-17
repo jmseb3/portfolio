@@ -6,7 +6,12 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Typography
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.compositionLocalOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 
 private val LightColorScheme = lightColorScheme(
     primary = md_theme_light_primary,
@@ -84,11 +89,34 @@ internal fun AppTheme(
     CompositionLocalProvider(
         LocalThemeIsDark provides isDarkState
     ) {
+        val defaultTypography = Typography()
+        val t = Typography(
+            displayLarge = defaultTypography.displayLarge.copy(fontFamily = getFont()),
+            displayMedium = defaultTypography.displayMedium.copy(fontFamily = getFont()),
+            displaySmall = defaultTypography.displaySmall.copy(fontFamily = getFont()),
+
+            headlineLarge = defaultTypography.headlineLarge.copy(fontFamily = getFont()),
+            headlineMedium = defaultTypography.headlineMedium.copy(fontFamily = getFont()),
+            headlineSmall = defaultTypography.headlineSmall.copy(fontFamily = getFont()),
+
+            titleLarge = defaultTypography.titleLarge.copy(fontFamily = getFont()),
+            titleMedium = defaultTypography.titleMedium.copy(fontFamily = getFont()),
+            titleSmall = defaultTypography.titleSmall.copy(fontFamily = getFont()),
+
+            bodyLarge = defaultTypography.bodyLarge.copy(fontFamily = getFont()),
+            bodyMedium = defaultTypography.bodyMedium.copy(fontFamily = getFont()),
+            bodySmall = defaultTypography.bodySmall.copy(fontFamily = getFont()),
+
+            labelLarge = defaultTypography.labelLarge.copy(fontFamily = getFont()),
+            labelMedium = defaultTypography.labelMedium.copy(fontFamily = getFont()),
+            labelSmall = defaultTypography.labelSmall.copy(fontFamily = getFont())
+        )
         val isDark by isDarkState
         SystemAppearance(!isDark)
         MaterialTheme(
             colorScheme = if (isDark) DarkColorScheme else LightColorScheme,
-            content = { Surface(content = content) }
+            content = { Surface(content = content) },
+            typography = t
         )
     }
 }
