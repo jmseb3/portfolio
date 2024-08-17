@@ -1,7 +1,5 @@
 package com.wonddak.portfolio.data
 
-import androidx.compose.material3.Icon
-import androidx.compose.ui.graphics.Color
 import com.wonddak.portfolio.model.IconData
 import com.wonddak.portfolio.model.LinkData
 import com.wonddak.portfolio.model.LinkType
@@ -9,12 +7,12 @@ import com.wonddak.portfolio.model.ProfileData
 import com.wonddak.portfolio.model.ProjectData
 import com.wonddak.portfolio.model.ProjectType
 import portfolio.composeapp.generated.resources.Res
-import portfolio.composeapp.generated.resources.appstore
-import portfolio.composeapp.generated.resources.github
-import portfolio.composeapp.generated.resources.googleplay
-import portfolio.composeapp.generated.resources.iamges_app_mt
+import portfolio.composeapp.generated.resources.app_dec_mt_1
+import portfolio.composeapp.generated.resources.app_dec_mt_2
+import portfolio.composeapp.generated.resources.app_dec_mt_3
+import portfolio.composeapp.generated.resources.app_dec_mt_4
+import portfolio.composeapp.generated.resources.app_dec_mt_5
 import portfolio.composeapp.generated.resources.profile
-import portfolio.composeapp.generated.resources.velog
 import portfolio.composeapp.generated.resources.icon_app_mt
 
 val projectList = setOf(
@@ -36,11 +34,15 @@ val projectList = setOf(
         ),
         icon = Res.drawable.icon_app_mt,
         images = listOf(
-            Res.drawable.iamges_app_mt
+            Res.drawable.app_dec_mt_1,
+            Res.drawable.app_dec_mt_2,
+            Res.drawable.app_dec_mt_3,
+            Res.drawable.app_dec_mt_4,
+            Res.drawable.app_dec_mt_5,
         ),
         contentDescription = """
-            MT 관리를 위한 앱입니다.
-            Compose Multi Platform을 이용하여 Android/IOS에서 사용 가능 하도록 되어 있습니다.
+            여행 갈때 인원,돈,계획 관리를 한번에 관리 할 수 있는 기능을 제공하는 앱입니다..
+            Compose MultiPlatform을 이용하여 Android/IOS에서 사용 가능 하도록 되어 있습니다.
         """.trimIndent()
     ),
     ProjectData(

@@ -78,6 +78,9 @@ internal fun App(
                     }
                 )
             }
+        },
+        bottomBar = {
+            Text("Compose MultiPlatform 으로 만들어진 웹사이트 입니다.")
         }
     ) { innerPadding ->
         NavHost(

@@ -1,12 +1,24 @@
 package com.wonddak.portfolio.model
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.defaultMinSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Info
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LocalContentColor
@@ -14,6 +26,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
@@ -40,35 +53,59 @@ data class ProjectData(
 ) {
     @Composable
     fun makeContentView() {
-        Column {
-            Row {
+        Column(
+            modifier = Modifier.padding(10.dp),
+            verticalArrangement = Arrangement.spacedBy(20.dp)
+        ) {
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(30.dp)
+            ) {
                 icon?.let { iconData ->
-                    Image(painterResource(iconData), null, modifier = Modifier.size(200.dp))
+                    Image(
+                        painterResource(iconData),
+                        null,
+                        modifier = Modifier
+                            .size(150.dp)
+                            .clip(RoundedCornerShape(15.dp))
+                    )
                 }
-                Column {
-                    Text(title)
-                    Text(type.name)
-                }
-            }
-            LazyRow {
-                items(links) { item ->
-                    IconButton(
-                        modifier = Modifier.padding(horizontal = 4.dp, vertical = 4.dp),
-                        onClick = { openUrl(item.url) },
-                    ) {
-                        Icon(
-                            painter = painterResource(item.type.drawableResource),
-                            contentDescription = null,
-                            tint = item.type.color,
-                            modifier = Modifier
-                        )
+                Column(
+                    verticalArrangement = Arrangement.spacedBy(10.dp)
+                ) {
+                    Text(
+                        text = "$title(${type.name})"
+                    )
+                    HorizontalDivider()
+                    LazyRow {
+                        items(links) { item ->
+                            IconButton(
+                                modifier = Modifier.padding(horizontal = 4.dp, vertical = 4.dp),
+                                onClick = { openUrl(item.url) },
+                            ) {
+                                Icon(
+                                    painter = painterResource(item.type.drawableResource),
+                                    contentDescription = null,
+                                    tint = item.type.color,
+                                    modifier = Modifier
+                                )
+                            }
+                        }
                     }
                 }
             }
+            HorizontalDivider()
             Text(contentDescription)
-            LazyRow {
-                items(images) { item ->
-                    Image(painterResource(item), contentDescription = null)
+            Row(
+                modifier = Modifier.fillMaxWidth().horizontalScroll(rememberScrollState())
+            ) {
+                images.forEach { item ->
+                    val width = 600.dp
+                    val height = width /9 * 16
+                    Image(
+                        painterResource(item),
+                        contentDescription = null,
+                        modifier = Modifier.width(width).height(height)
+                    )
                 }
             }
         }
