@@ -110,8 +110,6 @@ internal fun App(
     }
 }
 
-internal expect fun openUrl(url: String?)
-
 internal const val PROJECT_ID = "projectId"
 
 enum class Screen() {

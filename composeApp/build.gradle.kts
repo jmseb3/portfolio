@@ -14,6 +14,11 @@ kotlin {
         binaries.executable()
     }
 
+    js {
+        browser()
+        binaries.executable()
+    }
+
     sourceSets {
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -29,6 +34,10 @@ kotlin {
             implementation(kotlin("test"))
             @OptIn(ExperimentalComposeLibrary::class)
             implementation(compose.uiTest)
+        }
+
+        jsMain.dependencies {
+            implementation(compose.html.core)
         }
 
     }

@@ -14,9 +14,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.wonddak.portfolio.openUrl
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 
@@ -38,9 +38,10 @@ data class IconData(
 
     @Composable
     fun makeView(modifier: Modifier) {
+        val uriHandler = LocalUriHandler.current
         IconButton(
             modifier = modifier.padding(horizontal = 4.dp, vertical = 4.dp),
-            onClick = { openUrl(openUrl) },
+            onClick = { uriHandler.openUri(openUrl) },
         ) {
             Icon(
                 painter = painterResource(res),

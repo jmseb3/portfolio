@@ -16,21 +16,18 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
-import com.wonddak.portfolio.openUrl
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.Font
 import org.jetbrains.compose.resources.painterResource
@@ -53,6 +50,7 @@ data class ProjectData(
 ) {
     @Composable
     fun makeContentView() {
+        val uriHandler = LocalUriHandler.current
         Column(
             modifier = Modifier.padding(10.dp),
             verticalArrangement = Arrangement.spacedBy(20.dp)
@@ -81,7 +79,7 @@ data class ProjectData(
                         items(links) { item ->
                             IconButton(
                                 modifier = Modifier.padding(horizontal = 4.dp, vertical = 4.dp),
-                                onClick = { openUrl(item.url) },
+                                onClick = { uriHandler.openUri(item.url) },
                             ) {
                                 Icon(
                                     painter = painterResource(item.type.drawableResource),

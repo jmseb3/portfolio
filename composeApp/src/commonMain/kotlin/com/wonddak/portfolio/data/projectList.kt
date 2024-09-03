@@ -53,6 +53,8 @@ val projectList = setOf(
             수학 개념 정리를 위한 앱 입니다.
             간단한 개념정리와 문제풀이를 할 수 있습니다.
             제일 처음 대학생때 과제로 제출하였던 앱입니다.
+            
+            Room firebase
         """.trimIndent()
     ),
     ProjectData(
@@ -76,6 +78,8 @@ val projectList = setOf(
             처음에는 안드로이드만 제공 하였고,
             1차 마이그레이션으로 XML > Compose로 변경 하였고,
             2차 마이그레이션으로 Compose MultiPlatform을 이용하여 Android/IOS에서 사용 가능 하도록 되어 있습니다.
+            
+            Room Firebase Koin Ktor ViewModel
         """.trimIndent()
     ),
     ProjectData(
@@ -97,6 +101,8 @@ val projectList = setOf(
             제가 즐겨하는 게임인 로스트아크라는 게임에서 친구들과 파티 관리를 위해 제작했습니다..
             Kotlin Multiplaform을 이용하여 로직 공유에 초점을 맞추었고,
             firbase의 storage/store/auth 기능들을 주로 사용 하였습니다.
+            
+            Room Firebase Koin Ktor ViewModel
         """.trimIndent()
     ),
     ProjectData(
