@@ -17,14 +17,18 @@ import androidx.compose.ui.unit.dp
 import com.wonddak.portfolio.Mode
 import com.wonddak.portfolio.SelectModel
 import com.wonddak.portfolio.data.projectList
+import com.wonddak.portfolio.model.ProjectData
 import com.wonddak.portfolio.model.ProjectType
 
+/**
+ * The List Of My Project View
+ */
 @Composable
 fun AboutProject(
     mode: Mode,
     selectModel: SelectModel,
     modifier: Modifier,
-    navigateProject: (id: Int) -> Unit,
+    navigateProject: (ProjectData) -> Unit,
 ) {
     val nowType = selectModel.nowType
     Column(
@@ -55,7 +59,7 @@ fun AboutProject(
             items(projectList.filter { it.type == nowType }) { item ->
                 TextButton(
                     onClick = {
-                        navigateProject(item.id)
+                        navigateProject(item)
                     }
                 ) {
                     Text(item.title)

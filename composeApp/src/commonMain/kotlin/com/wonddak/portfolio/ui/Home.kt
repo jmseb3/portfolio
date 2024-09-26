@@ -15,12 +15,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.wonddak.portfolio.Mode
 import com.wonddak.portfolio.SelectModel
+import com.wonddak.portfolio.model.ProjectData
 
+/**
+ * The home Screen
+ */
 @Composable
 fun HomeView(
     mode: Mode,
     selectModel: SelectModel,
-    navigateProject: (id: Int) -> Unit,
+    navigateProject: (ProjectData) -> Unit,
 ) {
     Column(
         modifier = Modifier

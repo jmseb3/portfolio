@@ -31,7 +31,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import androidx.navigation.toRoute
 import com.wonddak.portfolio.data.projectList
+import com.wonddak.portfolio.model.ProjectData
 import com.wonddak.portfolio.theme.AppTheme
 import com.wonddak.portfolio.theme.getFont
 import com.wonddak.portfolio.ui.HomeView
@@ -92,8 +94,8 @@ internal fun App(
                 .padding(innerPadding)
         ) {
             composable(Screen.HOME.name) {
-                HomeView(mode, selectModel) { id ->
-                    navController.navigate("${Screen.PROJECT.name}/$id")
+                HomeView(mode, selectModel) { item ->
+                    navController.navigate("${Screen.PROJECT.name}/${item.id}")
                 }
             }
             composable(
