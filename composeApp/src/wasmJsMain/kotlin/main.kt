@@ -4,7 +4,5 @@ import com.wonddak.portfolio.App
 
 @OptIn(ExperimentalComposeUiApi::class)
 fun main() {
-    CanvasBasedWindow("portfolio") {
-        App()
-    }
+    CanvasBasedWindow(canvasElementId = "ComposeTarget") { App() }
 }
