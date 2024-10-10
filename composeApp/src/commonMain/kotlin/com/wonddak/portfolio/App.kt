@@ -65,62 +65,39 @@ internal fun App(
     LaunchedEffect(navBackStackEntry) {
         println(navBackStackEntry)
     }
-    Scaffold(
-        topBar = {
-            if (navBackStackEntry?.destination?.route != Screen.HOME.name) {
-                TopAppBar(
-                    title = {},
-                    navigationIcon = {
-                        IconButton(
-                            onClick = {
-                                navController.popBackStack()
-                            },
-                            enabled = navBackStackEntry?.destination?.route != Screen.HOME.name
-                        ) {
-                            Icon(Icons.AutoMirrored.Filled.ArrowBack, null)
-                        }
+
+    NavHost(
+        navController = navController,
+        startDestination = Screen.START.name,
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
+    ) {
+        composable(Screen.START.name) {
+            Column {
+                Button(
+                    onClick = {
+                        navController.navigate(Screen.HOME.name)
                     }
-                )
+                ) {
+                    Text("123")
+                }
             }
-        },
-        bottomBar = {
-            Text("Compose MultiPlatform 으로 만들어진 웹사이트 입니다.")
         }
-    ) { innerPadding ->
-        NavHost(
-            navController = navController,
-            startDestination = Screen.START.name,
-            modifier = Modifier
-                .fillMaxSize()
-                .verticalScroll(rememberScrollState())
-                .padding(innerPadding)
-        ) {
-            composable(Screen.START.name) {
-                Column {
-                    Button(
-                        onClick = {
-                            navController.navigate(Screen.HOME.name)
-                        }
-                    ) {
-                        Text("123")
-                    }
-                }
+        composable(Screen.HOME.name) {
+            HomeView(mode, selectModel) { item ->
+                navController.navigate("${Screen.PROJECT.name}/${item.id}")
             }
-            composable(Screen.HOME.name) {
-                HomeView(mode, selectModel) { item ->
-                    navController.navigate("${Screen.PROJECT.name}/${item.id}")
-                }
-            }
-            composable(
-                route = "${Screen.PROJECT.name}/{$PROJECT_ID}",
-                arguments = listOf(navArgument(PROJECT_ID) {
-                    type = NavType.IntType
-                    defaultValue = 0
-                })
-            ) { backStackEntry ->
-                val projectId: Int = backStackEntry.arguments?.getInt(PROJECT_ID) ?: 0
-                ProjectView(projectList.find { it.id == projectId })
-            }
+        }
+        composable(
+            route = "${Screen.PROJECT.name}/{$PROJECT_ID}",
+            arguments = listOf(navArgument(PROJECT_ID) {
+                type = NavType.IntType
+                defaultValue = 0
+            })
+        ) { backStackEntry ->
+            val projectId: Int = backStackEntry.arguments?.getInt(PROJECT_ID) ?: 0
+            ProjectView(projectList.find { it.id == projectId })
         }
     }
 }
