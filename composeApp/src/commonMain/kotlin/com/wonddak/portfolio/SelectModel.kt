@@ -14,6 +14,4 @@ class SelectModel : ViewModel() {
         println("update Type to $type")
         this.nowType = type
     }
-
-
 }

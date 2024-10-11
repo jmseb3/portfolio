@@ -1,11 +1,13 @@
 package com.wonddak.portfolio
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -24,6 +26,7 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.text.TextStyle
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -38,10 +41,12 @@ import com.wonddak.portfolio.theme.AppTheme
 import com.wonddak.portfolio.theme.getFont
 import com.wonddak.portfolio.ui.HomeView
 import com.wonddak.portfolio.ui.ProjectView
+import com.wonddak.portfolio.ui.StartView
 
 @OptIn(ExperimentalComposeUiApi::class, ExperimentalMaterial3Api::class)
 @Composable
 internal fun App(
+    navController: NavHostController = rememberNavController()
 ) = AppTheme {
     val selectModel = SelectModel()
     var mode by remember {
@@ -57,57 +62,44 @@ internal fun App(
         }
     }
 
-    val navController: NavHostController = rememberNavController()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
 
     LaunchedEffect(navBackStackEntry) {
         println(navBackStackEntry)
     }
-    Scaffold(
-        topBar = {
-            if (navBackStackEntry?.destination?.route != Screen.HOME.name) {
-                TopAppBar(
-                    title = {},
-                    navigationIcon = {
-                        IconButton(
-                            onClick = {
-                                navController.popBackStack()
-                            },
-                            enabled = navBackStackEntry?.destination?.route != Screen.HOME.name
-                        ) {
-                            Icon(Icons.AutoMirrored.Filled.ArrowBack, null)
-                        }
-                    }
-                )
-            }
-        },
-        bottomBar = {
-            Text("Compose MultiPlatform 으로 만들어진 웹사이트 입니다.")
+
+    NavHost(
+        navController = navController,
+        startDestination = Screen.START.name,
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
+    ) {
+        composable(Screen.START.name) {
+            StartView(
+                navigationToHome = {
+                    navController.navigate(Screen.HOME.name)
+                }
+            )
         }
-    ) { innerPadding ->
-        NavHost(
-            navController = navController,
-            startDestination = Screen.HOME.name,
-            modifier = Modifier
-                .fillMaxSize()
-                .verticalScroll(rememberScrollState())
-                .padding(innerPadding)
-        ) {
-            composable(Screen.HOME.name) {
-                HomeView(mode, selectModel) { item ->
+        composable(Screen.HOME.name) {
+            HomeView(
+                mode,
+                selectModel,
+                navigateProject = { item ->
                     navController.navigate("${Screen.PROJECT.name}/${item.id}")
                 }
-            }
-            composable(
-                route = "${Screen.PROJECT.name}/{$PROJECT_ID}",
-                arguments = listOf(navArgument(PROJECT_ID) {
-                    type = NavType.IntType
-                    defaultValue = 0
-                })
-            ) { backStackEntry ->
-                val projectId: Int = backStackEntry.arguments?.getInt(PROJECT_ID) ?: 0
-                ProjectView(projectList.find { it.id == projectId })
-            }
+            )
+        }
+        composable(
+            route = "${Screen.PROJECT.name}/{$PROJECT_ID}",
+            arguments = listOf(navArgument(PROJECT_ID) {
+                type = NavType.IntType
+                defaultValue = 0
+            })
+        ) { backStackEntry ->
+            val projectId: Int = backStackEntry.arguments?.getInt(PROJECT_ID) ?: 0
+            ProjectView(projectList.find { it.id == projectId })
         }
     }
 }
@@ -115,6 +107,7 @@ internal fun App(
 internal const val PROJECT_ID = "projectId"
 
 enum class Screen() {
+    START,
     HOME,
     PROJECT
 }

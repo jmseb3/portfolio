@@ -54,7 +54,7 @@ val projectList = setOf(
             간단한 개념정리와 문제풀이를 할 수 있습니다.
             제일 처음 대학생때 과제로 제출하였던 앱입니다.
             
-            Room firebase
+            Room Firebase
         """.trimIndent()
     ),
     ProjectData(
@@ -100,9 +100,9 @@ val projectList = setOf(
         contentDescription = """
             제가 즐겨하는 게임인 로스트아크라는 게임에서 친구들과 파티 관리를 위해 제작했습니다..
             Kotlin Multiplaform을 이용하여 로직 공유에 초점을 맞추었고,
-            firbase의 storage/store/auth 기능들을 주로 사용 하였습니다.
+            firebase의 storage/store/auth 기능들을 주로 사용 하였습니다.
             
-            Room Firebase Koin Ktor ViewModel
+            Room Firebase Koin Ktor ViewModel Navigation
         """.trimIndent()
     ),
     ProjectData(
@@ -123,7 +123,7 @@ val projectList = setOf(
         ),
         contentDescription = """
             여러 사이트에서 관리중인 나의 코인/주식을 한번에 계산해주는 간단한 계산기 어플입니다.
-            1차 마이그레이션으로 XML > Compose을 지원하게되었습니다.
+            1차 마이그레이션으로 XML > Compose으로 변환 하였습니다.
         """.trimIndent()
     ),
     ProjectData(
@@ -165,7 +165,10 @@ val projectList = setOf(
     ProjectData(
         8,
         ProjectType.Plugin,
-        "Font Helper"
+        "Font Helper",
+        contentDescription = """
+            간편하게 Font파일 제작을 도와주는 플러그인 입니다.
+        """.trimIndent()
     )
 )
 
