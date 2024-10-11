@@ -8,7 +8,7 @@ import org.jetbrains.skiko.wasm.onWasmReady
 
 @OptIn(ExperimentalComposeUiApi::class)
 fun main() {
-    window.onload = {
+    onWasmReady {
         document.title = "WonDDak Portfolio"
         val body = document.body!!
         ComposeViewport(body) {
