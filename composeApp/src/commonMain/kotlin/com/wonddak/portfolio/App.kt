@@ -26,6 +26,7 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.text.TextStyle
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -40,10 +41,12 @@ import com.wonddak.portfolio.theme.AppTheme
 import com.wonddak.portfolio.theme.getFont
 import com.wonddak.portfolio.ui.HomeView
 import com.wonddak.portfolio.ui.ProjectView
+import com.wonddak.portfolio.ui.StartView
 
 @OptIn(ExperimentalComposeUiApi::class, ExperimentalMaterial3Api::class)
 @Composable
 internal fun App(
+    navController: NavHostController = rememberNavController()
 ) = AppTheme {
     val selectModel = SelectModel()
     var mode by remember {
@@ -59,7 +62,6 @@ internal fun App(
         }
     }
 
-    val navController: NavHostController = rememberNavController()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
 
     LaunchedEffect(navBackStackEntry) {
@@ -74,20 +76,20 @@ internal fun App(
             .verticalScroll(rememberScrollState())
     ) {
         composable(Screen.START.name) {
-            Column {
-                Button(
-                    onClick = {
-                        navController.navigate(Screen.HOME.name)
-                    }
-                ) {
-                    Text("123")
+            StartView(
+                navigationToHome = {
+                    navController.navigate(Screen.HOME.name)
                 }
-            }
+            )
         }
         composable(Screen.HOME.name) {
-            HomeView(mode, selectModel) { item ->
-                navController.navigate("${Screen.PROJECT.name}/${item.id}")
-            }
+            HomeView(
+                mode,
+                selectModel,
+                navigateProject = { item ->
+                    navController.navigate("${Screen.PROJECT.name}/${item.id}")
+                }
+            )
         }
         composable(
             route = "${Screen.PROJECT.name}/{$PROJECT_ID}",
