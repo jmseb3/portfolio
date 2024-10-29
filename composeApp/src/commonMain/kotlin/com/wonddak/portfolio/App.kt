@@ -99,7 +99,12 @@ internal fun App(
             })
         ) { backStackEntry ->
             val projectId: Int = backStackEntry.arguments?.getInt(PROJECT_ID) ?: 0
-            ProjectView(projectList.find { it.id == projectId })
+            ProjectView(
+                data = projectList.find { it.id == projectId },
+                onBack = {
+                    navController.popBackStack()
+                }
+            )
         }
     }
 }

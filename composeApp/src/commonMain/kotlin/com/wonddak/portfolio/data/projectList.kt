@@ -169,7 +169,18 @@ val projectList = setOf(
         contentDescription = """
             간편하게 Font파일 제작을 도와주는 플러그인 입니다.
         """.trimIndent()
-    )
+    ),
+    ProjectData(
+        9,
+        ProjectType.Library,
+        "Captureable",
+        links = listOf(
+            LinkData.GitHubRepo("Capturable")
+        ),
+        contentDescription = """
+            Compose Multiplatform에서 @Composable한 View를 이미지로 변환해주는 라이브러리
+        """.trimIndent()
+    ),
 )
 
 val profile = ProfileData(
