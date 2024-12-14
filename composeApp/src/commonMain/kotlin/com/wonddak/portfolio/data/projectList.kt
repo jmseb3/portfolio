@@ -129,7 +129,7 @@ val projectList = setOf(
     ProjectData(
         5,
         ProjectType.Library,
-        "SImp jwt parser",
+        "Simple jwt parser",
         links = listOf(
             LinkData.GitHubRepo("KMM-Simple-JWT-Parser")
         ),
@@ -178,7 +178,8 @@ val projectList = setOf(
             LinkData.GitHubRepo("Capturable")
         ),
         contentDescription = """
-            Compose Multiplatform에서 @Composable한 View를 이미지로 변환해주는 라이브러리
+            Compose Multiplatform에서 @Composable한 View를 이미지로 변환해주는 라이브러리입니다\n
+            기존에 Android 용으로 제작되었던 라이브러리를 수정하여 CMP용으로 제공하고있습니다.
         """.trimIndent()
     ),
 )

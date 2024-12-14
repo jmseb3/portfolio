@@ -4,7 +4,7 @@ plugins {
     alias(libs.plugins.multiplatform)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.compose)
-//    alias(libs.plugins.serialization)
+    alias(libs.plugins.serialization)
 }
 
 kotlin {
@@ -30,7 +30,7 @@ kotlin {
             implementation("org.jetbrains.androidx.navigation:navigation-compose:2.8.0-alpha10")
             implementation("org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose:2.8.0")
 
-//            implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
+            implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
 
         }
 
@@ -42,6 +42,10 @@ kotlin {
 
         jsMain.dependencies {
             implementation(compose.html.core)
+        }
+
+        wasmJsMain.dependencies {
+            implementation("org.jetbrains.kotlinx:kotlinx-browser:0.3")
         }
 
     }

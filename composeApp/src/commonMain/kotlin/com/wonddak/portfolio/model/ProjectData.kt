@@ -1,6 +1,8 @@
 package com.wonddak.portfolio.model
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -16,18 +18,22 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
+import kotlinx.serialization.Serializable
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.Font
 import org.jetbrains.compose.resources.painterResource
@@ -98,12 +104,16 @@ data class ProjectData(
                 modifier = Modifier.fillMaxWidth().horizontalScroll(rememberScrollState())
             ) {
                 images.forEach { item ->
-                    val width = 600.dp
-                    val height = width /9 * 16
+                    val width = 200.dp
+                    val height = width / 9 * 16
                     Image(
                         painterResource(item),
                         contentDescription = null,
-                        modifier = Modifier.width(width).height(height)
+                        modifier = Modifier
+                            .clip(RoundedCornerShape(4.dp))
+                            .border(1.dp,Color.Black, RoundedCornerShape(4.dp))
+                            .width(width)
+                            .height(height)
                     )
                 }
             }
@@ -114,15 +124,27 @@ data class ProjectData(
     fun makePreview(
         onClick: () -> Unit,
     ) {
-        TextButton(
-            onClick = onClick,
+        Column(
+            modifier = Modifier
+                .border(1.dp,Color.Black, RoundedCornerShape(4.dp))
+                .clickable {
+                    onClick()
+                }
         ) {
-            Text(
-                title,
-                fontFamily = FontFamily(
-                    Font(Res.font.MangoDdobak_R)
+            Column(
+                modifier = Modifier.padding(10.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                icon?.let {
+                    Image(painterResource(it),null)
+                }
+                Text(
+                    title,
+                    fontFamily = FontFamily(
+                        Font(Res.font.MangoDdobak_R)
+                    )
                 )
-            )
+            }
         }
     }
 }

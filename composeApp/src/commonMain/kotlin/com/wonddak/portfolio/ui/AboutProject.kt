@@ -56,14 +56,17 @@ fun AboutProject(
             modifier = Modifier.height(500.dp),
             columns = GridCells.Adaptive(minSize = 128.dp)
         ) {
-            items(projectList.filter { it.type == nowType }) { item ->
-                TextButton(
+            items(
+                projectList.filter { it.type == nowType },
+                key = {
+                    it.id
+                }
+            ) { item ->
+                item.makePreview(
                     onClick = {
                         navigateProject(item)
                     }
-                ) {
-                    Text(item.title)
-                }
+                )
             }
         }
     }

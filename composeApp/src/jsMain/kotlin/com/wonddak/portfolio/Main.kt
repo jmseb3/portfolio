@@ -10,7 +10,7 @@ import org.jetbrains.skiko.wasm.onWasmReady
 fun main() {
     onWasmReady {
         document.title = "WonDDak Portfolio"
-        val body = document.body!!
+        val body = document.body ?: return@onWasmReady
         ComposeViewport(body) {
             App()
         }
