@@ -139,7 +139,7 @@ data class ProjectData(
                     Image(painterResource(it),null)
                 }
                 Text(
-                    title,
+                    text = title,
                     fontFamily = FontFamily(
                         Font(Res.font.MangoDdobak_R)
                     )
@@ -152,7 +152,8 @@ data class ProjectData(
 enum class ProjectType {
     App,
     Library,
-    Plugin
+    Plugin,
+    Convention
 }
 
 enum class LinkType(val drawableResource: DrawableResource, val color: Color) {

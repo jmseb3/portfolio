@@ -51,7 +51,7 @@ val projectList = setOf(
         ),
         contentDescription = """
             수학 개념 정리를 위한 앱 입니다.
-            간단한 개념정리와 문제풀이를 할 수 있습니다.
+            Fragment를 활용한 여러 화면 이동 통해  개념정리와 문제풀이를 할 수 있습니다.
             제일 처음 대학생때 과제로 제출하였던 앱입니다.
             
             Room Firebase
@@ -77,7 +77,7 @@ val projectList = setOf(
             여행 갈때 인원,돈,계획 관리를 한번에 관리 할 수 있는 기능을 제공하는 앱입니다.
             처음에는 안드로이드만 제공 하였고,
             1차 마이그레이션으로 XML > Compose로 변경 하였고,
-            2차 마이그레이션으로 Compose MultiPlatform을 이용하여 Android/IOS에서 사용 가능 하도록 되어 있습니다.
+            2차 마이그레이션으로 Compose MultiPlatform을 이용하여 Android/Ios에서 사용 가능 하도록 되어 있습니다.
             
             Room Firebase Koin Ktor ViewModel
         """.trimIndent()
@@ -99,8 +99,9 @@ val projectList = setOf(
         ),
         contentDescription = """
             제가 즐겨하는 게임인 로스트아크라는 게임에서 친구들과 파티 관리를 위해 제작했습니다..
-            Kotlin Multiplaform을 이용하여 로직 공유에 초점을 맞추었고,
+            Kotlin Multiplaform을 이용하여 로직 공유에 초점을 맞추었습니다.
             firebase의 storage/store/auth 기능들을 주로 사용 하였습니다.
+            이후 Compose Multiplaform으로 개선하여 두앱 모두 동일한 UI를 가지도록 되어있습니다.
             
             Room Firebase Koin Ktor ViewModel Navigation
         """.trimIndent()
@@ -124,6 +125,9 @@ val projectList = setOf(
         contentDescription = """
             여러 사이트에서 관리중인 나의 코인/주식을 한번에 계산해주는 간단한 계산기 어플입니다.
             1차 마이그레이션으로 XML > Compose으로 변환 하였습니다.
+            
+            최초 제작시에는 retorift을 통한 upBit의 코인 시세를 받아오는 기능이 있었습니다
+            하지만 마이그레이션 하면서 불필요하다 생각하여 제거되었습니다.
         """.trimIndent()
     ),
     ProjectData(
@@ -179,7 +183,7 @@ val projectList = setOf(
         ),
         contentDescription = """
             Compose Multiplatform에서 @Composable한 View를 이미지로 변환해주는 라이브러리입니다\n
-            기존에 Android 용으로 제작되었던 라이브러리를 수정하여 CMP용으로 제공하고있습니다.
+            기존에 Android 용으로 제작되었던 라이브러리를 Fork 및 수정하여 CMP용으로 제공하고있습니다.
         """.trimIndent()
     ),
 )

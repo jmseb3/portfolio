@@ -70,7 +70,7 @@ internal fun App(
 
     NavHost(
         navController = navController,
-        startDestination = Screen.START.name,
+        startDestination = Screen.HOME.name,
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState())

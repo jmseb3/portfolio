@@ -8,13 +8,7 @@ plugins {
 }
 
 kotlin {
-    @OptIn(org.jetbrains.kotlin.gradle.ExperimentalWasmDsl::class)
     wasmJs {
-        browser()
-        binaries.executable()
-    }
-
-    js {
         browser()
         binaries.executable()
     }
@@ -38,14 +32,6 @@ kotlin {
             implementation(kotlin("test"))
             @OptIn(ExperimentalComposeLibrary::class)
             implementation(compose.uiTest)
-        }
-
-        jsMain.dependencies {
-            implementation(compose.html.core)
-        }
-
-        wasmJsMain.dependencies {
-            implementation("org.jetbrains.kotlinx:kotlinx-browser:0.3")
         }
 
     }
