@@ -14,6 +14,7 @@ import androidx.navigation.ExperimentalBrowserHistoryApi
 import androidx.navigation.bindToNavigation
 import androidx.navigation.compose.rememberNavController
 import com.wonddak.portfolio.App
+import com.wonddak.portfolio.model.Screen
 import kotlinx.browser.window
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.configureWebResources
