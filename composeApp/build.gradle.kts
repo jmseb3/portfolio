@@ -21,7 +21,7 @@ kotlin {
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
 
-            implementation("org.jetbrains.androidx.navigation:navigation-compose:2.8.0-alpha10")
+            implementation("org.jetbrains.androidx.navigation:navigation-compose:2.9.0-alpha16")
             implementation("org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose:2.8.0")
 
             implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
