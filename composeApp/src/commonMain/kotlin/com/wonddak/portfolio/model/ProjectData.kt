@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -97,7 +98,9 @@ data class ProjectData(
                 }
             }
             HorizontalDivider()
-            Text(contentDescription)
+            SelectionContainer {
+                Text(contentDescription)
+            }
             LazyRow(
                 modifier = Modifier.fillMaxWidth()
             ) {
@@ -137,7 +140,9 @@ data class ProjectData(
                                 )
                             }
                             is AsyncImagePainter.State.Error -> {
-                                Text(state.toString())
+                                SelectionContainer {
+                                    Text(state.toString())
+                                }
                             }
                         }
                     }

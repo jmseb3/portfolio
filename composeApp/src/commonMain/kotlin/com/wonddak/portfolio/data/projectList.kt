@@ -163,7 +163,7 @@ val projectList = setOf(
             LinkData.GitHubRepo("SwitchView-Compose")
         ),
         images = listOf(
-//            "https://raw.githubusercontent.com/jmseb3/SwitchView-Compose/refs/heads/main/screenshots/sectionSwitchView.gif",
+            "https://raw.githubusercontent.com/jmseb3/SwitchView-Compose/main/screenshots/sectionSwitchView.gif",
         ),
         contentDescription = """
             기본으로 제공되는 스위치기능을 보다 커스텀 할 수 있도록 제공하는 라이브러리 입니다.
@@ -177,8 +177,8 @@ val projectList = setOf(
             LinkData.GitHubRepo("Android_Font_Helper_Plugin")
         ),
         images = listOf(
-//            "https://raw.githubusercontent.com/jmseb3/Android_Font_Helper_Plugin/refs/heads/main/screenshot/01.open_tool.png",
-//            "https://raw.githubusercontent.com/jmseb3/Android_Font_Helper_Plugin/refs/heads/main/screenshot/02.setting.png"
+            "https://raw.githubusercontent.com/jmseb3/Android_Font_Helper_Plugin/main/screenshot/01.open_tool.png",
+            "https://raw.githubusercontent.com/jmseb3/Android_Font_Helper_Plugin/main/screenshot/02.setting.png"
         ),
         contentDescription = """
             간편하게 Font파일 제작을 도와주는 플러그인 입니다.
