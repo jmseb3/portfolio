@@ -4,9 +4,6 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 sealed interface Screen {
-    @Serializable
-    @SerialName("start")
-    data object Start : Screen
 
     @Serializable
     @SerialName("home")

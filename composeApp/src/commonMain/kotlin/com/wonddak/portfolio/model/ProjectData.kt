@@ -3,47 +3,45 @@ package com.wonddak.portfolio.model
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.defaultMinSize
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalUriHandler
-import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import kotlinx.serialization.Serializable
+import coil3.compose.AsyncImage
+import coil3.compose.AsyncImagePainter
+import coil3.compose.SubcomposeAsyncImage
+import coil3.compose.rememberAsyncImagePainter
+import com.wonddak.portfolio.theme.getFont
 import org.jetbrains.compose.resources.DrawableResource
-import org.jetbrains.compose.resources.Font
 import org.jetbrains.compose.resources.painterResource
-import portfolio.composeapp.generated.resources.MangoDdobak_R
 import portfolio.composeapp.generated.resources.Res
 import portfolio.composeapp.generated.resources.appstore
+import portfolio.composeapp.generated.resources.github
 import portfolio.composeapp.generated.resources.googleplay
 import portfolio.composeapp.generated.resources.link
 import portfolio.composeapp.generated.resources.velog
-import portfolio.composeapp.generated.resources.github
 
 data class ProjectData(
     var id: Int,
@@ -51,7 +49,7 @@ data class ProjectData(
     var title: String = "",
     var links: List<LinkData> = emptyList(),
     var icon: DrawableResource? = null,
-    var images: List<DrawableResource> = emptyList(),
+    var images: List<Any> = emptyList(),
     var contentDescription: String = "",
 ) {
     @Composable
@@ -100,21 +98,49 @@ data class ProjectData(
             }
             HorizontalDivider()
             Text(contentDescription)
-            Row(
-                modifier = Modifier.fillMaxWidth().horizontalScroll(rememberScrollState())
+            LazyRow(
+                modifier = Modifier.fillMaxWidth()
             ) {
-                images.forEach { item ->
-                    val width = 200.dp
-                    val height = width / 9 * 16
-                    Image(
-                        painterResource(item),
-                        contentDescription = null,
-                        modifier = Modifier
-                            .clip(RoundedCornerShape(4.dp))
-                            .border(1.dp,Color.Black, RoundedCornerShape(4.dp))
-                            .width(width)
-                            .height(height)
-                    )
+                items(images) { item ->
+                    val modifier = Modifier
+                        .clip(RoundedCornerShape(4.dp))
+                        .border(1.dp, Color.Black, RoundedCornerShape(4.dp))
+                        .then(
+                            if (type == ProjectType.App) {
+                                Modifier
+                                    .width(200.dp)
+                                    .aspectRatio(9 / 16f)
+                            } else {
+                                Modifier
+                            }
+                        )
+
+                    if (item is DrawableResource) {
+                        Image(
+                            painter = painterResource(item),
+                            contentDescription = null,
+                            modifier = modifier
+                        )
+                    } else {
+                        val painter = rememberAsyncImagePainter(item)
+                        val state by painter.state.collectAsState()
+
+                        when (state) {
+                            is AsyncImagePainter.State.Empty,
+                            is AsyncImagePainter.State.Loading -> {
+                                CircularProgressIndicator()
+                            }
+                            is AsyncImagePainter.State.Success -> {
+                                Image(
+                                    painter = painter,
+                                    contentDescription = null
+                                )
+                            }
+                            is AsyncImagePainter.State.Error -> {
+                                Text(state.toString())
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -126,24 +152,41 @@ data class ProjectData(
     ) {
         Column(
             modifier = Modifier
-                .border(1.dp,Color.Black, RoundedCornerShape(4.dp))
+                .border(1.dp, Color.Black, RoundedCornerShape(4.dp))
                 .clickable {
                     onClick()
                 }
         ) {
-            Column(
-                modifier = Modifier.padding(10.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                icon?.let {
-                    Image(painterResource(it),null)
-                }
-                Text(
-                    text = title,
-                    fontFamily = FontFamily(
-                        Font(Res.font.MangoDdobak_R)
+            if (icon == null) {
+                Column(
+                    modifier = Modifier.padding(10.dp)
+                        .aspectRatio(1f),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
+                ) {
+                    Text(
+                        text = title,
+                        fontFamily = getFont(),
+                        textAlign = TextAlign.Center
                     )
-                )
+                }
+            } else {
+                Column(
+                    modifier = Modifier.padding(10.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    icon?.let {
+                        Image(
+                            painter = painterResource(it),
+                            contentDescription = null,
+                            modifier = Modifier.aspectRatio(1f)
+                        )
+                    }
+                    Text(
+                        text = title,
+                        fontFamily = getFont()
+                    )
+                }
             }
         }
     }

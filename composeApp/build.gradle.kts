@@ -18,6 +18,7 @@ kotlin {
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material3)
+            implementation(compose.materialIconsExtended)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
 
@@ -26,6 +27,7 @@ kotlin {
 
             implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
 
+            implementation("io.coil-kt.coil3:coil-compose:3.2.0")
         }
 
         commonTest.dependencies {

@@ -9,7 +9,6 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -30,7 +29,6 @@ fun AboutProject(
     modifier: Modifier,
     navigateProject: (ProjectData) -> Unit,
 ) {
-    val nowType = selectModel.nowType
     Column(
         modifier,
         horizontalAlignment = Alignment.CenterHorizontally
@@ -57,7 +55,7 @@ fun AboutProject(
             columns = GridCells.Adaptive(minSize = 128.dp)
         ) {
             items(
-                projectList.filter { it.type == nowType },
+                projectList.filter { it.type == selectModel.nowType },
                 key = {
                     it.id
                 }

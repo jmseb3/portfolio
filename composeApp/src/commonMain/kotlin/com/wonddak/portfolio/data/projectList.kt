@@ -27,11 +27,11 @@ import portfolio.composeapp.generated.resources.app_dec_mt_2
 import portfolio.composeapp.generated.resources.app_dec_mt_3
 import portfolio.composeapp.generated.resources.app_dec_mt_4
 import portfolio.composeapp.generated.resources.app_dec_mt_5
+import portfolio.composeapp.generated.resources.icon_app_coin
 import portfolio.composeapp.generated.resources.icon_app_loacell
 import portfolio.composeapp.generated.resources.icon_app_math
-import portfolio.composeapp.generated.resources.icon_app_coin
-import portfolio.composeapp.generated.resources.profile
 import portfolio.composeapp.generated.resources.icon_app_mt
+import portfolio.composeapp.generated.resources.profile
 
 val projectList = setOf(
     ProjectData(
@@ -131,9 +131,9 @@ val projectList = setOf(
         """.trimIndent()
     ),
     ProjectData(
-        5,
-        ProjectType.Library,
-        "Simple jwt parser",
+        id = 5,
+        type = ProjectType.Library,
+        title = "Simple jwt parser",
         links = listOf(
             LinkData.GitHubRepo("KMM-Simple-JWT-Parser")
         ),
@@ -142,9 +142,9 @@ val projectList = setOf(
         """.trimIndent()
     ),
     ProjectData(
-        6,
-        ProjectType.Library,
-        "HelLogin",
+        id = 6,
+        type = ProjectType.Library,
+        title = "HelLogin",
         links = listOf(
             LinkData.GitHubRepo("helLogin")
         ),
@@ -156,33 +156,43 @@ val projectList = setOf(
         """.trimIndent()
     ),
     ProjectData(
-        7,
-        ProjectType.Library,
-        "Compose Switch",
+        id = 7,
+        type = ProjectType.Library,
+        title = "Compose Switch",
         links = listOf(
             LinkData.GitHubRepo("SwitchView-Compose")
+        ),
+        images = listOf(
+//            "https://raw.githubusercontent.com/jmseb3/SwitchView-Compose/refs/heads/main/screenshots/sectionSwitchView.gif",
         ),
         contentDescription = """
             기본으로 제공되는 스위치기능을 보다 커스텀 할 수 있도록 제공하는 라이브러리 입니다.
         """.trimIndent()
     ),
     ProjectData(
-        8,
-        ProjectType.Plugin,
-        "Font Helper",
+        id = 8,
+        type = ProjectType.Plugin,
+        title = "Font Helper",
+        links = listOf(
+            LinkData.GitHubRepo("Android_Font_Helper_Plugin")
+        ),
+        images = listOf(
+//            "https://raw.githubusercontent.com/jmseb3/Android_Font_Helper_Plugin/refs/heads/main/screenshot/01.open_tool.png",
+//            "https://raw.githubusercontent.com/jmseb3/Android_Font_Helper_Plugin/refs/heads/main/screenshot/02.setting.png"
+        ),
         contentDescription = """
             간편하게 Font파일 제작을 도와주는 플러그인 입니다.
         """.trimIndent()
     ),
     ProjectData(
-        9,
-        ProjectType.Library,
-        "Captureable",
+        id = 9,
+        type = ProjectType.Library,
+        title = "Capturable",
         links = listOf(
             LinkData.GitHubRepo("Capturable")
         ),
         contentDescription = """
-            Compose Multiplatform에서 @Composable한 View를 이미지로 변환해주는 라이브러리입니다\n
+            Compose Multiplatform에서 @Composable한 View를 이미지(ImageBitmap)로 변환해주는 라이브러리입니다
             기존에 Android 용으로 제작되었던 라이브러리를 Fork 및 수정하여 CMP용으로 제공하고있습니다.
         """.trimIndent()
     ),
