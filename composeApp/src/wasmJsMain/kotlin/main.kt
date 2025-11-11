@@ -10,11 +10,12 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.window.CanvasBasedWindow
+import androidx.compose.ui.window.ComposeViewport
 import androidx.navigation.ExperimentalBrowserHistoryApi
+import androidx.navigation.bindToBrowserNavigation
 import androidx.navigation.bindToNavigation
 import androidx.navigation.compose.rememberNavController
 import com.wonddak.portfolio.App
-import com.wonddak.portfolio.model.Screen
 import kotlinx.browser.window
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.configureWebResources
@@ -29,17 +30,18 @@ fun main() {
         // Overrides the resource location
         resourcePathMapping { path -> "./$path" }
     }
-    CanvasBasedWindow("WonDDak Portfolio", canvasElementId = "canvas") {
+
+    ComposeViewport() {
         val mangoFont by preloadFont(Res.font.MangoDdobak_R)
 
         val navController = rememberNavController()
+        LaunchedEffect(Unit) {
+            navController.bindToBrowserNavigation()
+        }
 
         App(
             navController = navController
         )
-        LaunchedEffect(Unit) {
-            window.bindToNavigation(navController)
-        }
 
         if (mangoFont != null) {
             println("Fonts are ready")
