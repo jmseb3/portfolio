@@ -30,6 +30,7 @@ import portfolio.composeapp.generated.resources.app_dec_mt_5
 import portfolio.composeapp.generated.resources.icon_app_coin
 import portfolio.composeapp.generated.resources.icon_app_loacell
 import portfolio.composeapp.generated.resources.icon_app_math
+import portfolio.composeapp.generated.resources.icon_app_mooments
 import portfolio.composeapp.generated.resources.icon_app_mt
 import portfolio.composeapp.generated.resources.profile
 
@@ -196,25 +197,28 @@ val projectList = setOf(
             기존에 Android 용으로 제작되었던 라이브러리를 Fork 및 수정하여 CMP용으로 제공하고있습니다.
         """.trimIndent()
     ),
-)
-
-val profile = ProfileData(
-    Res.drawable.profile
-)
-
-val iconData = listOf(
-    IconData(
-        LinkData.GitHub("jmseb3")
+    ProjectData(
+        id = 10,
+        type = ProjectType.Library,
+        title = "Kmp-Vibrate",
+        links = listOf(
+            LinkData.GitHubRepo("Kmp-Vibrate")
+        ),
+        contentDescription = """
+            Compose Multiplatform에서 여러 플랫폼에서 진동 처리를 위해 만들어진 라이브러리 입니다.
+        """.trimIndent()
     ),
-    IconData(
-        LinkData.Velog("jmseb3")
+    ProjectData(
+        id = 11,
+        type = ProjectType.App,
+        title = "mooments!",
+        links = listOf(
+            LinkData.PlayStore("io.project.mooments"),
+            LinkData.Other("https://mooments.oobi.co.kr")
+        ),
+        icon = Res.drawable.icon_app_mooments,
+        contentDescription = """
+            협업 프로젝트, 하루에 한줄 소확행 기록 어플
+        """.trimIndent()
     ),
-    IconData(
-        LinkType.PlayStore,
-        "https://play.google.com/store/apps/developer?id=WonDDak",
-    ),
-    IconData(
-        LinkType.AppStore,
-        "https://apps.apple.com/kr/developer/jung-wonhee/id1723807756",
-    )
 )

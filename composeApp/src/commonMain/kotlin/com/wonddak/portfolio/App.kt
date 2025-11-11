@@ -66,7 +66,7 @@ internal fun App(
                 selectModel,
                 navigateProject = { item ->
                     navController.navigate(Screen.Project(item.id)) {
-
+                        launchSingleTop = true
                     }
                 }
             )
@@ -75,9 +75,7 @@ internal fun App(
             val projectRoute = backStackEntry.toRoute<Screen.Project>()
             ProjectView(
                 data = projectList.find { it.id == projectRoute.id },
-                onBack = {
-                    navController.popBackStack()
-                }
+                onBack = navController::navigateUp
             )
         }
     }
