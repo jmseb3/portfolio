@@ -9,13 +9,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.window.CanvasBasedWindow
+import androidx.compose.ui.window.ComposeViewport
 import androidx.navigation.ExperimentalBrowserHistoryApi
-import androidx.navigation.bindToNavigation
+import androidx.navigation.bindToBrowserNavigation
 import androidx.navigation.compose.rememberNavController
 import com.wonddak.portfolio.App
-import com.wonddak.portfolio.model.Screen
-import kotlinx.browser.window
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.configureWebResources
 import org.jetbrains.compose.resources.preloadFont
@@ -24,33 +22,31 @@ import portfolio.composeapp.generated.resources.Res
 
 @OptIn(ExperimentalComposeUiApi::class, ExperimentalResourceApi::class)
 @ExperimentalBrowserHistoryApi
-fun main() {
+fun main() = ComposeViewport {
     configureWebResources {
         // Overrides the resource location
         resourcePathMapping { path -> "./$path" }
     }
-    CanvasBasedWindow("WonDDak Portfolio", canvasElementId = "canvas") {
-        val mangoFont by preloadFont(Res.font.MangoDdobak_R)
+    val mangoFont by preloadFont(Res.font.MangoDdobak_R)
 
-        val navController = rememberNavController()
+    val navController = rememberNavController()
 
-        App(
-            navController = navController
-        )
-        LaunchedEffect(Unit) {
-            window.bindToNavigation(navController)
+    App(
+        navController = navController
+    )
+    LaunchedEffect(Unit) {
+        navController.bindToBrowserNavigation()
+    }
+
+    if (mangoFont != null) {
+        println("Fonts are ready")
+    } else {
+        Box(
+            modifier = Modifier.fillMaxSize()
+                .background(Color.White.copy(alpha = 0.8f))
+                .clickable { }) {
+            CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
         }
-
-        if (mangoFont != null) {
-            println("Fonts are ready")
-        } else {
-            Box(
-                modifier = Modifier.fillMaxSize()
-                    .background(Color.White.copy(alpha = 0.8f))
-                    .clickable { }) {
-                CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
-            }
-            println("Fonts are not ready yet")
-        }
+        println("Fonts are not ready yet")
     }
 }

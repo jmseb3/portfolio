@@ -1,5 +1,3 @@
-import org.jetbrains.compose.ExperimentalComposeLibrary
-
 plugins {
     alias(libs.plugins.multiplatform)
     alias(libs.plugins.compose.compiler)
@@ -8,6 +6,11 @@ plugins {
 }
 
 kotlin {
+    js {
+        browser()
+        binaries.executable()
+    }
+
     wasmJs {
         browser()
         binaries.executable()
@@ -15,14 +18,14 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(compose.runtime)
-            implementation(compose.foundation)
-            implementation(compose.material3)
-            implementation(compose.materialIconsExtended)
-            implementation(compose.components.resources)
-            implementation(compose.components.uiToolingPreview)
+            implementation("org.jetbrains.compose.runtime:runtime:1.10.3")
+            implementation("org.jetbrains.compose.foundation:foundation:1.10.3")
+            implementation("org.jetbrains.compose.material3:material3:1.9.0")
+            implementation("org.jetbrains.compose.material:material-icons-extended:1.7.3")
+            implementation("org.jetbrains.compose.components:components-resources:1.10.3")
+            implementation("org.jetbrains.compose.ui:ui-tooling-preview:1.10.3")
 
-            implementation("org.jetbrains.androidx.navigation:navigation-compose:2.9.0-alpha16")
+            implementation("org.jetbrains.androidx.navigation:navigation-compose:2.9.2")
             implementation("org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose:2.8.0")
 
             implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
@@ -33,8 +36,7 @@ kotlin {
 
         commonTest.dependencies {
             implementation(kotlin("test"))
-            @OptIn(ExperimentalComposeLibrary::class)
-            implementation(compose.uiTest)
+            implementation("org.jetbrains.compose.ui:ui-test:1.10.3")
         }
 
     }
