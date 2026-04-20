@@ -209,7 +209,7 @@ enum class LinkType(val drawableResource: DrawableResource, val color: Color) {
     AppStore(Res.drawable.appstore, Color(0xff0D96F6)),
     Velog(Res.drawable.velog, Color(0xff20C997)),
     GitHub(Res.drawable.github, Color(0xff181717)),
-    Other(Res.drawable.link, Color(0xffffff))
+    Other(Res.drawable.link, Color(0xff000000))
 }
 
 sealed class LinkData(
